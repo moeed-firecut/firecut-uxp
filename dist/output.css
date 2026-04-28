@@ -1,0 +1,358 @@
+*, ::before, ::after {
+    --tw-border-spacing-x: 0;
+    --tw-border-spacing-y: 0;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    --tw-pan-x:  ;
+    --tw-pan-y:  ;
+    --tw-pinch-zoom:  ;
+    --tw-scroll-snap-strictness: proximity;
+    --tw-gradient-from-position:  ;
+    --tw-gradient-via-position:  ;
+    --tw-gradient-to-position:  ;
+    --tw-ordinal:  ;
+    --tw-slashed-zero:  ;
+    --tw-numeric-figure:  ;
+    --tw-numeric-spacing:  ;
+    --tw-numeric-fraction:  ;
+    --tw-ring-inset:  ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgb(59 130 246 / 0.5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    --tw-blur:  ;
+    --tw-brightness:  ;
+    --tw-contrast:  ;
+    --tw-grayscale:  ;
+    --tw-hue-rotate:  ;
+    --tw-invert:  ;
+    --tw-saturate:  ;
+    --tw-sepia:  ;
+    --tw-drop-shadow:  ;
+    --tw-backdrop-blur:  ;
+    --tw-backdrop-brightness:  ;
+    --tw-backdrop-contrast:  ;
+    --tw-backdrop-grayscale:  ;
+    --tw-backdrop-hue-rotate:  ;
+    --tw-backdrop-invert:  ;
+    --tw-backdrop-opacity:  ;
+    --tw-backdrop-saturate:  ;
+    --tw-backdrop-sepia:  ;
+    --tw-contain-size:  ;
+    --tw-contain-layout:  ;
+    --tw-contain-paint:  ;
+    --tw-contain-style:  ;
+}
+::backdrop {
+    --tw-border-spacing-x: 0;
+    --tw-border-spacing-y: 0;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    --tw-pan-x:  ;
+    --tw-pan-y:  ;
+    --tw-pinch-zoom:  ;
+    --tw-scroll-snap-strictness: proximity;
+    --tw-gradient-from-position:  ;
+    --tw-gradient-via-position:  ;
+    --tw-gradient-to-position:  ;
+    --tw-ordinal:  ;
+    --tw-slashed-zero:  ;
+    --tw-numeric-figure:  ;
+    --tw-numeric-spacing:  ;
+    --tw-numeric-fraction:  ;
+    --tw-ring-inset:  ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgb(59 130 246 / 0.5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    --tw-blur:  ;
+    --tw-brightness:  ;
+    --tw-contrast:  ;
+    --tw-grayscale:  ;
+    --tw-hue-rotate:  ;
+    --tw-invert:  ;
+    --tw-saturate:  ;
+    --tw-sepia:  ;
+    --tw-drop-shadow:  ;
+    --tw-backdrop-blur:  ;
+    --tw-backdrop-brightness:  ;
+    --tw-backdrop-contrast:  ;
+    --tw-backdrop-grayscale:  ;
+    --tw-backdrop-hue-rotate:  ;
+    --tw-backdrop-invert:  ;
+    --tw-backdrop-opacity:  ;
+    --tw-backdrop-saturate:  ;
+    --tw-backdrop-sepia:  ;
+    --tw-contain-size:  ;
+    --tw-contain-layout:  ;
+    --tw-contain-paint:  ;
+    --tw-contain-style:  ;
+}
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+         user-select: none;
+  }
+.header-btn img {
+    width: 13px;
+    height: 13px;
+    margin-right: 5px;
+  }
+.footer-btn img {
+    width: 14px;
+    height: 14px;
+    display: block;
+    opacity: 0.6;
+    margin-right: 5px;
+  }
+.footer-icon-btn img {
+    width: 16px;
+    height: 16px;
+    display: block;
+    opacity: 0.6;
+  }
+.footer-icon-btn:hover img {
+    opacity: 1;
+  }
+.card-icon img {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+.grid-row:last-child {
+    margin-bottom: 0;
+  }
+.feature-card:last-child {
+    margin-right: 0;
+  }
+.absolute {
+    position: absolute;
+}
+.relative {
+    position: relative;
+}
+.right-2 {
+    right: 0.5rem;
+}
+.top-\[6px\] {
+    top: 6px;
+}
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+.mr-2 {
+    margin-right: 0.5rem;
+}
+.mr-\[10px\] {
+    margin-right: 10px;
+}
+.flex {
+    display: flex;
+}
+.grid {
+    display: grid;
+}
+.h-\[36px\] {
+    height: 36px;
+}
+.w-\[36px\] {
+    width: 36px;
+}
+.min-w-\[36px\] {
+    min-width: 36px;
+}
+.flex-1 {
+    flex: 1 1 0%;
+}
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.select-none {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+}
+.flex-row {
+    flex-direction: row;
+}
+.flex-col {
+    flex-direction: column;
+}
+.items-center {
+    align-items: center;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.overflow-hidden {
+    overflow: hidden;
+}
+.overflow-y-auto {
+    overflow-y: auto;
+}
+.rounded {
+    border-radius: 0.25rem;
+}
+.rounded-\[7px\] {
+    border-radius: 7px;
+}
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+.border {
+    border-width: 1px;
+}
+.border-b {
+    border-bottom-width: 1px;
+}
+.border-t {
+    border-top-width: 1px;
+}
+.border-none {
+    border-style: none;
+}
+.border-\[\#3a3a3a\] {
+    --tw-border-opacity: 1;
+    border-color: rgb(58 58 58 / var(--tw-border-opacity, 1));
+}
+.bg-\[\#2a2a2a\] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(42 42 42 / var(--tw-bg-opacity, 1));
+}
+.bg-transparent {
+    background-color: transparent;
+}
+.p-\[10px\] {
+    padding: 10px;
+}
+.px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.px-\[10px\] {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+.py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.py-\[11px\] {
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+.py-\[7px\] {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.text-\[10px\] {
+    font-size: 10px;
+}
+.text-\[13px\] {
+    font-size: 13px;
+}
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+.text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+.font-medium {
+    font-weight: 500;
+}
+.font-semibold {
+    font-weight: 600;
+}
+.leading-\[1\.3\] {
+    line-height: 1.3;
+}
+.leading-none {
+    line-height: 1;
+}
+.text-\[\#4ade80\] {
+    --tw-text-opacity: 1;
+    color: rgb(74 222 128 / var(--tw-text-opacity, 1));
+}
+.text-\[\#9ca3af\] {
+    --tw-text-opacity: 1;
+    color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+.text-\[\#a78bfa\] {
+    --tw-text-opacity: 1;
+    color: rgb(167 139 250 / var(--tw-text-opacity, 1));
+}
+.text-white {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+/* Manual reset — replaces preflight for UXP */
+
+/*
+ * Component styles for child selectors and :last-child resets.
+ * All rules are flat — no CSS nesting (UXP limitation).
+ * Tailwind v3 emits @layer components as flat CSS — UXP safe.
+ */
+
+.hover\:bg-\[\#333333\]:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(51 51 51 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-\[\#363636\]:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(54 54 54 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:text-white:hover {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}

@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Manual reset — replaces preflight for UXP */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/*
+ * Component styles for child selectors and :last-child resets.
+ * All rules are flat — no CSS nesting (UXP limitation).
+ * Tailwind v3 emits @layer components as flat CSS — UXP safe.
+ */
+@layer components {
+  .header-btn img {
+    width: 13px;
+    height: 13px;
+    margin-right: 5px;
+  }
+  .footer-btn img {
+    width: 14px;
+    height: 14px;
+    display: block;
+    opacity: 0.6;
+    margin-right: 5px;
+  }
+  .footer-icon-btn img {
+    width: 16px;
+    height: 16px;
+    display: block;
+    opacity: 0.6;
+  }
+  .footer-icon-btn:hover img {
+    opacity: 1;
+  }
+  .card-icon img {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+  .grid-row:last-child {
+    margin-bottom: 0;
+  }
+  .feature-card:last-child {
+    margin-right: 0;
+  }
+}
