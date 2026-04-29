@@ -1,169 +1,544 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>FireCut</title>
-  <script src="./vendor/jquery.min.js"></script>
-  <link rel="stylesheet" href="./dist/output.css" />
-</head>
-<body class="flex flex-col overflow-hidden select-none">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FireCut</title>
+    <script src="./vendor/jquery.min.js"></script>
+    <link rel="stylesheet" href="./dist/output.css" />
+  </head>
+  <body class="flex flex-col overflow-hidden select-none">
+    <!-- HEADER SECTION START -->
+    <div id="header">
+      <div class="mx-auto flex items-center px-4 pt-3">
+        <div class="mx-auto flex w-full items-center justify-between">
+          <div class="flex w-24 justify-start">
+            <div
+              id="button-undo-disabled"
+              class="mx-0 cursor-not-allowed rounded-sm border-none bg-transparent px-1 text-xs font-medium text-gray-500 outline-none hover:border-none hover:bg-transparent hover:text-gray-500 focus:border-none focus:outline-none active:border-none active:text-gray-500 active:outline-none"
+            >
+              ↺ Undo
+            </div>
+            <div
+              id="button-undo-enabled"
+              class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 mx-0 hidden rounded-sm border px-1 text-xs font-light text-white transition-colors duration-100"
+            >
+              ↺ Undo
+            </div>
+          </div>
+          <abbr title="https://firecut.ai/" class="mt-0.5 no-underline">
+            <div
+              id="button-logo"
+              class="text-shorts-100 me-2 flex justify-center items-center rounded-sm border-none bg-transparent font-bold text-md"
+            >
+              <img
+                src="assets/logos/flame-256.png"
+                alt="FireCut"
+                class="mr-1 mt-0.5 h-4"
+              />
+              FireCut
+            </div>
+          </abbr>
+          <div class="flex w-32 justify-end">
+            <div
+              class="restartExt bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 mx-0 rounded-sm border px-1 text-xs font-light text-white transition-colors duration-100"
+            >
+              Reload plugin
+            </div>
+            <div
+              style="z-index: 10001; pointer-events: auto !important"
+              class="flex items-center justify-center gap-1 active:bg-red-700 active:border-red-400 bg-red-600 border border-red-500 closeTour duration-100 hover:bg-red-400 hover:border-red-300 mx-0 px-2 py-1 rounded-sm text-white text-xs transition-colors hidden"
+            >
+              <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAx0lEQVR4nO3Vu05CQRCA4X0aQgtiARIK0UgCvv8T2HGJBlCrz2y45CCXAOfW7F9tMdl/ZzKzE0IikagKNDG4If4B7bzSBj6wwvCK+BZmWKCTRzzA0oYof74Q+7gVRn4wulscwRO+theu8RJOlzdmGvnFeygCh/KYzfifdF64dAd6+MzIJ6VLz2T+nXlIPL+FMkE3I9xnX6r0RMmrEauj1I47u/zmcjzLr1XMcD8jXZ35QNqFytX1ZbpvSUxzL4na1mIikQg38Adi/+ESgabdTwAAAABJRU5ErkJggg=="
+                alt="multiply"
+                class="size-4"
+              />
+              <div>Close tour</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- Header -->
-  <div class="header flex flex-row items-center justify-between py-[7px] px-3 border-b border-[#3a3a3a] flex-shrink-0">
-    <div id="btn-undo" class="header-btn flex flex-row items-center py-1 px-[10px] bg-[#2a2a2a] border border-[#3a3a3a] rounded text-white text-xs font-medium cursor-pointer hover:bg-[#363636]">
-      <img src="./assets/icons/undo.png" width="13" height="13" alt="" />
-      Undo
+      <div
+        id="button-update-container"
+        class="flex hidden flex-col space-y-2 px-4 pt-2 text-sm"
+      >
+        <div
+          id="button-update"
+          class="mx-0 hidden h-8 rounded-md border-none bg-purple-700 px-1 text-sm font-medium text-white hover:from-purple-300 hover:to-purple-400 active:bg-neutral-400 active:text-black"
+        >
+          ⬆️ Update available
+        </div>
+        <div id="button-update-text" class="text-shorts-100 hidden"></div>
+      </div>
+
+      <div id="changelog-container" class="flex hidden flex-col pt-2 text-sm">
+        <div
+          class="container mx-auto flex items-start justify-between space-x-2 px-4 pt-3 text-sm"
+        >
+          <div class="text-shorts-100 flex items-center space-x-2">
+            <div>Thanks for updating FireCut!</div>
+            <div
+              id="button-changelog"
+              class="open-link bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 ms-2 h-6 rounded-md border px-1.5 py-0 text-xs font-light text-white outline-none transition-colors duration-100"
+              link="https://firecut.ai/changelog/"
+            >
+              See what's new
+            </div>
+            <div class="group relative">
+              <img
+                class="h-3 w-3 select-none items-center justify-center text-xs"
+                src="../assets/images/icons/new_tab.png"
+              />
+              <div
+                class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute bottom-1 left-3 z-50 hidden w-32 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+              >
+                Opens in your browser
+              </div>
+            </div>
+          </div>
+          <div
+            id="changelog-dismiss"
+            class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 mx-0 mt-0.5 rounded-sm border-none bg-transparent px-1 text-xs font-light text-white transition-colors duration-100"
+          >
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAx0lEQVR4nO3Vu05CQRCA4X0aQgtiARIK0UgCvv8T2HGJBlCrz2y45CCXAOfW7F9tMdl/ZzKzE0IikagKNDG4If4B7bzSBj6wwvCK+BZmWKCTRzzA0oYof74Q+7gVRn4wulscwRO+theu8RJOlzdmGvnFeygCh/KYzfifdF64dAd6+MzIJ6VLz2T+nXlIPL+FMkE3I9xnX6r0RMmrEauj1I47u/zmcjzLr1XMcD8jXZ35QNqFytX1ZbpvSUxzL4na1mIikQg38Adi/+ESgabdTwAAAABJRU5ErkJggg=="
+              alt="multiply"
+              class="w-6"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="status-message-container"
+        class="flex hidden flex-col pt-2 text-sm"
+      >
+        <hr class="border-shorts-500 mx-4 mt-1" />
+        <div
+          class="flex w-full items-start justify-between space-x-2 px-4 pt-2 text-sm"
+        >
+          <div id="status-message-text" class="text-shorts-100"></div>
+          <div
+            id="status-message-dismiss"
+            class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 mx-0 mt-0.5 rounded-sm border-none bg-transparent px-1 text-xs font-light text-white transition-colors duration-100"
+          >
+            ✕
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="temporary-files-message-container"
+        class="flex hidden flex-col pt-2 text-sm"
+      >
+        <hr class="border-shorts-500 mx-4 mt-1" />
+        <div
+          class="flex w-full items-stretch justify-between space-x-2 px-4 pt-2 text-sm"
+        >
+          <div id="temporary-files-message-text" class="text-shorts-100"></div>
+          <div
+            class="xs:flex-row xs:space-y-0 xs:space-x-2 flex flex-col items-center space-y-2"
+          >
+            <div
+              id="temporary-files-message-clear-temporary-files"
+              class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 w-12 rounded-sm border px-1 text-xs font-light text-white transition-colors duration-100"
+            >
+              Clear
+            </div>
+            <div
+              id="temporary-files-message-dismiss"
+              class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 w-12 rounded-sm border px-1 text-xs font-light text-white transition-colors duration-100"
+            >
+              Ignore
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="undo-info" class="flex hidden flex-col px-4 pt-2 text-sm">
+        <div class="mb-4">
+          <b>Warning:</b> Undo will roll back all changes in the current
+          sequence back to the following state. A copy of the current sequence
+          will be saved in the "FireCut" bin. Please proceed with caution.
+        </div>
+        <div>
+          <table class="mx-auto text-sm">
+            <tbody>
+              <tr>
+                <td class="pe-2 font-bold">Sequence name:</td>
+                <td id="undo-info-name">(unknown)</td>
+              </tr>
+              <tr>
+                <td class="pe-2 font-bold">Undo state time:</td>
+                <td id="undo-info-time">(unknown)</td>
+              </tr>
+              <tr>
+                <td class="pe-2 font-bold">Comments:</td>
+                <td id="undo-info-comments">(unknown)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mb-2 mt-6 flex justify-center">
+          <div
+            class="mx-2 rounded-lg border-none bg-red-600 px-6 py-2 font-bold text-white transition-colors duration-100 hover:bg-red-500 active:bg-red-700"
+            id="button-undo-confirm"
+          >
+            Confirm undo
+          </div>
+          <div
+            class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 mx-2 rounded-lg border px-6 py-2 font-bold text-white transition-colors duration-100"
+            id="button-undo-hide"
+          >
+            Cancel
+          </div>
+        </div>
+      </div>
     </div>
 
-    <span class="text-sm font-semibold">
-      <img src="./assets/logos/flame-256.png" width="20" height="20" alt="" />
-      FireCut
-    </span>
+    <hr class="border-shorts-500 my-4 menu-section-separator h-1" />
+    <!-- HEADER SECTION END -->
 
-    <div id="btn-reload" class="header-btn flex flex-row items-center py-1 px-[10px] bg-[#2a2a2a] border border-[#3a3a3a] rounded text-white text-xs font-medium cursor-pointer hover:bg-[#363636]">
-      Reload plugin
-    </div>
-  </div>
+    <!-- FEATURE GRID START -->
+    <div class="main flex-1 overflow-y-auto p-[10px] flex flex-col">
+      <div class="grid-row flex flex-row mb-4">
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="silences"
+        >
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/silences.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Remove silences
+          </div>
+        </div>
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="fillers"
+        >
+          <div
+            class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#4ade80]"
+          >
+            Beta
+          </div>
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/fillers.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Remove fillers
+          </div>
+        </div>
+      </div>
 
-  <!-- Feature grid -->
-  <div class="main flex-1 overflow-y-auto p-[10px] flex flex-col">
+      <div class="grid-row flex flex-row mb-4">
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="repetition"
+        >
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/repetition.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Remove repetition
+          </div>
+        </div>
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="profanity"
+        >
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/profanity.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Remove profanity
+          </div>
+        </div>
+      </div>
 
-    <div class="grid-row flex flex-row mb-2">
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="silences">
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/silences.svg" width="20" height="20" alt="" />
+      <div class="grid-row flex flex-row mb-4">
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="zooms"
+        >
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img src="./assets/icons/zooms.svg" width="20" height="20" alt="" />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Add zooms
+          </div>
         </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Remove silences</div>
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="chapters"
+        >
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/chapters.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Add chapters
+          </div>
+        </div>
       </div>
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="fillers">
-        <div class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#4ade80]">Beta</div>
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/fillers.svg" width="20" height="20" alt="" />
+
+      <div class="grid-row flex flex-row mb-4">
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="captions"
+        >
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/captions.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Add captions
+          </div>
         </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Remove fillers</div>
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="voiceover"
+        >
+          <div
+            class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#a78bfa]"
+          >
+            ✦ New
+          </div>
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/voiceover.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Add voiceover
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-row flex flex-row mb-4">
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="titles"
+        >
+          <div
+            class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#4ade80]"
+          >
+            Beta
+          </div>
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/titles.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Add titles
+          </div>
+        </div>
+        <div class="feature-card-empty flex-1"></div>
+      </div>
+
+      <div class="grid-row flex flex-row mb-4">
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="broll"
+        >
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/bk.broll.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Find B-roll
+          </div>
+        </div>
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="music"
+        >
+          <div
+            class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#a78bfa]"
+          >
+            ✦ New
+          </div>
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/broll-music.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Find music
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-row flex flex-row mb-4">
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="multitrack"
+        >
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/multitrack.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Multi-track
+          </div>
+        </div>
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="highlights"
+        >
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/shorts.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Create highlights
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-row flex flex-row mb-4">
+        <div
+          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
+          data-feature="workflows"
+        >
+          <div
+            class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#4ade80]"
+          >
+            Beta
+          </div>
+          <div
+            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
+          >
+            <img
+              src="./assets/icons/workflows.svg"
+              width="20"
+              height="20"
+              alt=""
+            />
+          </div>
+          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
+            Workflows
+          </div>
+        </div>
+        <div class="feature-card-empty flex-1"></div>
       </div>
     </div>
 
-    <div class="grid-row flex flex-row mb-2">
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="repetition">
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/repetition.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Remove repetition</div>
+    <!-- Footer -->
+    <div
+      class="footer flex flex-row items-center justify-between py-2 px-4 border-t border-[#3a3a3a] flex-shrink-0"
+    >
+      <div
+        id="btn-feedback"
+        class="footer-btn flex flex-row items-center bg-transparent border-none text-[#9ca3af] text-xs cursor-pointer hover:text-white"
+      >
+        <img src="./assets/icons/feedback.svg" width="14" height="14" alt="" />
+        Feedback
       </div>
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="profanity">
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/profanity.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Remove profanity</div>
+      <div
+        id="btn-settings"
+        class="footer-btn flex flex-row items-center bg-transparent border-none text-[#9ca3af] text-xs cursor-pointer hover:text-white"
+      >
+        <img src="./assets/icons/settings.svg" width="14" height="14" alt="" />
+        Settings
       </div>
-    </div>
-
-    <div class="grid-row flex flex-row mb-2">
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="zooms">
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/zooms.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Add zooms</div>
+      <div
+        id="btn-help"
+        class="footer-btn flex flex-row items-center bg-transparent border-none text-[#9ca3af] text-xs cursor-pointer hover:text-white"
+      >
+        <img src="./assets/icons/help.svg" width="14" height="14" alt="" />
+        Help
       </div>
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="chapters">
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/chapters.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Add chapters</div>
-      </div>
-    </div>
-
-    <div class="grid-row flex flex-row mb-2">
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="captions">
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/captions.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Add captions</div>
-      </div>
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="voiceover">
-        <div class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#a78bfa]">✦ New</div>
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/voiceover.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Add voiceover</div>
+      <div
+        id="btn-notif"
+        class="footer-icon-btn bg-transparent border-none cursor-pointer"
+      >
+        <img
+          src="./assets/icons/notif-none.svg"
+          width="16"
+          height="16"
+          alt="Notifications"
+        />
       </div>
     </div>
 
-    <div class="grid-row flex flex-row mb-2">
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="titles">
-        <div class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#4ade80]">Beta</div>
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/titles.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Add titles</div>
-      </div>
-      <div class="feature-card-empty flex-1"></div>
-    </div>
-
-    <div class="grid-row flex flex-row mb-2">
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="broll">
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/bk.broll.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Find B-roll</div>
-      </div>
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="music">
-        <div class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#a78bfa]">✦ New</div>
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/broll-music.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Find music</div>
-      </div>
-    </div>
-
-    <div class="grid-row flex flex-row mb-2">
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="multitrack">
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/multitrack.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Multi-track</div>
-      </div>
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="highlights">
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/shorts.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Create highlights</div>
-      </div>
-    </div>
-
-    <div class="grid-row flex flex-row mb-2">
-      <div class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-2 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]" data-feature="workflows">
-        <div class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#4ade80]">Beta</div>
-        <div class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]">
-          <img src="./assets/icons/workflows.svg" width="20" height="20" alt="" />
-        </div>
-        <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">Workflows</div>
-      </div>
-      <div class="feature-card-empty flex-1"></div>
-    </div>
-
-  </div>
-
-  <!-- Footer -->
-  <div class="footer flex flex-row items-center justify-between py-2 px-4 border-t border-[#3a3a3a] flex-shrink-0">
-    <div id="btn-feedback" class="footer-btn flex flex-row items-center bg-transparent border-none text-[#9ca3af] text-xs cursor-pointer hover:text-white">
-      <img src="./assets/icons/feedback.svg" width="14" height="14" alt="" />
-      Feedback
-    </div>
-    <div id="btn-settings" class="footer-btn flex flex-row items-center bg-transparent border-none text-[#9ca3af] text-xs cursor-pointer hover:text-white">
-      <img src="./assets/icons/settings.svg" width="14" height="14" alt="" />
-      Settings
-    </div>
-    <div id="btn-help" class="footer-btn flex flex-row items-center bg-transparent border-none text-[#9ca3af] text-xs cursor-pointer hover:text-white">
-      <img src="./assets/icons/help.svg" width="14" height="14" alt="" />
-      Help
-    </div>
-    <div id="btn-notif" class="footer-icon-btn bg-transparent border-none cursor-pointer">
-      <img src="./assets/icons/notif-none.svg" width="16" height="16" alt="Notifications" />
-    </div>
-  </div>
-
-  <script src="./index.js"></script>
-</body>
+    <script src="./index.js"></script>
+  </body>
 </html>
