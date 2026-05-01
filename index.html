@@ -6,7 +6,7 @@
     <script src="./vendor/jquery.min.js"></script>
     <link rel="stylesheet" href="./dist/output.css" />
   </head>
-  <body class="flex flex-col overflow-hidden select-none">
+  <body class="flex flex-col overflow-y-auto select-none">
     <!-- HEADER SECTION START -->
     <div id="header">
       <div class="mx-auto flex items-center px-4 pt-3">
@@ -40,7 +40,7 @@
           </abbr>
           <div class="flex w-32 justify-end">
             <div
-              class="restartExt bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 mx-0 rounded-sm border px-1 text-xs font-light text-white transition-colors duration-100"
+              class="restartExt bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 mx-0 rounded-sm border px-1 border-solid text-xs font-light text-white transition-colors duration-100"
             >
               Reload plugin
             </div>
@@ -88,7 +88,7 @@
             <div class="group relative">
               <img
                 class="h-3 w-3 select-none items-center justify-center text-xs"
-                src="../assets/images/icons/new_tab.png"
+                src="assets/icons/new_tab.png"
               />
               <div
                 class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute bottom-1 left-3 z-50 hidden w-32 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
@@ -197,347 +197,2389 @@
       </div>
     </div>
 
-    <hr class="border-shorts-500 my-4 menu-section-separator h-1" />
+    <hr class="bg-shorts-500 mb-4 mt-7 menu-section-separator mx-4" />
     <!-- HEADER SECTION END -->
 
-    <!-- FEATURE GRID START -->
-    <div class="main flex-1 overflow-y-auto p-[10px] flex flex-col">
-      <div class="grid-row flex flex-row mb-4">
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="silences"
-        >
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/silences.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
+    <!-- MAIN MENU START -->
+    <div class="menu flex hidden flex-col justify-between" menu-name="main">
+      <div class="mx-4">
+        <div class="flex flex-row flex-wrap">
+          <div class="flex flex-row mb-4 w-full">
+            <div
+              feature="silence-cutting-basic"
+              feature_state="enabled"
+              class="menu-open border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none mr-4"
+              target-menu="silence-cutting-basic"
+            >
+              <div class="flex h-6 w-12 items-center justify-center">
+                <img src="assets/icons/bk.silences.png" class="h-7" />
+              </div>
+              <div class="flex-1">Remove silences</div>
+            </div>
+
+            <!-- As an exception for now, we render this as a "hideable" feature that is initially hidden -->
+            <div
+              feature="remove-filler-words-v1.1.3+"
+              feature_state="enabled"
+              class="menu-open border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+              target-menu="remove-filler-words"
+            >
+              <div class="flex h-6 w-12 items-center justify-center">
+                <img src="assets/icons/bk.fillers.png" class="h-7" />
+              </div>
+              <div class="flex-1">Remove fillers</div>
+              <div
+                class="text-shorts-100 bg-shorts-500 absolute right-0 top-0 ml-1 rounded-bl-md rounded-tr-lg px-1 py-0 text-xs font-normal"
+              >
+                🧪 Beta
+              </div>
+            </div>
           </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Remove silences
+
+          <div class="flex flex-row w-full">
+            <div
+              feature="takes"
+              feature_state="enabled"
+              class="menu-open mr-4 border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+              target-menu="takes"
+            >
+              <div class="flex h-6 w-12 items-center justify-center">
+                <img src="assets/icons/bk.repetition.png" class="h-7" />
+              </div>
+              <div class="flex-1">Remove repetition</div>
+            </div>
+
+            <div
+              feature="remove_profanity"
+              feature_state="enabled"
+              class="menu-open border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+              target-menu="remove-profanity"
+            >
+              <div class="flex h-6 w-12 items-center justify-center">
+                <img src="assets/icons/bk.profanity.png" class="h-7" />
+              </div>
+              <div class="flex-1">Remove profanity</div>
+            </div>
           </div>
         </div>
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="fillers"
-        >
-          <div
-            class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#4ade80]"
-          >
-            Beta
+
+        <hr class="bg-shorts-500 my-4 menu-section-separator mx-0" />
+        <div class="flex flex-row flex-wrap">
+          <div class="flex flex-row w-full mb-4">
+            <div
+              feature="zooms"
+              feature_state="enabled"
+              class="menu-open mr-4 border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+              target-menu="zooms"
+            >
+              <div class="flex h-6 w-12 items-center justify-center">
+                <img src="assets/icons/bk.zooms.png" class="h-7" />
+              </div>
+              <div class="flex-1">Add zooms</div>
+            </div>
+
+            <div
+              feature="chapters"
+              feature_state="enabled"
+              class="menu-open border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+              target-menu="chapters"
+            >
+              <div class="flex h-6 w-12 items-center justify-center">
+                <img src="assets/icons/bk.chapters.png" class="h-7" />
+              </div>
+              <div class="flex-1">Add chapters</div>
+            </div>
           </div>
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/fillers.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
+
+          <div class="flex flex-row w-full mb-4">
+            <div
+              feature="captions"
+              feature_state="enabled"
+              class="menu-open mr-4 border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+              target-menu="captions"
+            >
+              <div class="flex h-6 w-12 items-center justify-center">
+                <img src="assets/icons/bk.captions.png" class="h-7" />
+              </div>
+              <div class="flex-1">Add captions</div>
+            </div>
+
+            <div
+              feature="tts"
+              feature_state="enabled"
+              class="menu-open border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+              target-menu="tts"
+            >
+              <div class="flex h-6 w-12 items-center justify-center">
+                <img src="assets/icons/bk.voiceover.png" class="h-7" />
+              </div>
+              <div class="flex-1">Add voiceover</div>
+              <div
+                class="text-shorts-100 bg-shorts-500 absolute right-0 top-0 ml-1 rounded-bl-md rounded-tr-lg px-1 py-0 text-xs font-normal"
+              >
+                ✨ New
+              </div>
+            </div>
           </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Remove fillers
+
+          <div class="flex w-1/2">
+            <div
+              feature="titles"
+              feature_state="enabled"
+              class="menu-open mr-2 border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+              target-menu="titles-automatic"
+            >
+              <div class="flex h-6 w-12 items-center justify-center">
+                <img src="assets/icons/bk.titles.png" class="h-7" />
+              </div>
+              <div class="flex-1">Add titles</div>
+              <div
+                class="text-shorts-100 bg-shorts-500 absolute right-0 top-0 ml-1 rounded-bl-md rounded-tr-lg px-1 py-0 text-xs font-normal"
+              >
+                🧪 Beta
+              </div>
+            </div>
           </div>
         </div>
+        <hr class="bg-shorts-500 my-4 menu-section-separator mx-0" />
+        <div class="flex flex-row w-full">
+          <div
+            feature="broll"
+            feature_state="enabled"
+            class="menu-open mr-4 border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+            target-menu="broll-automatic"
+          >
+            <div class="flex h-6 w-12 items-center justify-center">
+              <img src="assets/icons/bk.broll.png" class="h-7" />
+            </div>
+            <div class="flex-1">Find B-roll</div>
+            <div
+              id="broll-upgrade-banner"
+              class="hidden text-shorts-100 absolute right-0 top-0 z-10 ml-1 rounded-bl-md rounded-tr-md bg-indigo-800 px-1 py-0 text-xs"
+            >
+              Upgrade B-roll
+            </div>
+          </div>
+
+          <div
+            feature="music"
+            feature_state="enabled"
+            class="menu-open border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+            target-menu="find-music-automatic"
+          >
+            <div class="flex h-6 w-12 items-center justify-center">
+              <img src="assets/icons/bk.broll-music.png" class="h-7" />
+            </div>
+            <div class="flex-1">Find music</div>
+            <div
+              class="text-shorts-100 bg-shorts-500 absolute right-0 top-0 ml-1 rounded-bl-md rounded-tr-lg px-1 py-0 text-xs font-normal"
+            >
+              ✨ New
+            </div>
+          </div>
+        </div>
+        <hr class="bg-shorts-500 my-4 menu-section-separator mx-0" />
+        <div class="flex flex-row w-full">
+          <div
+            feature="multitrack-video"
+            feature_state="enabled"
+            class="menu-open mr-4 border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+            target-menu="multitrack-video"
+          >
+            <div class="flex h-6 w-12 items-center justify-center">
+              <img src="assets/icons/bk.multitrack.png" class="h-7" />
+            </div>
+            <div class="flex-1">Multi-track</div>
+          </div>
+
+          <div
+            feature="shorts_generation"
+            feature_state="enabled"
+            class="menu-open border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+            target-menu="shorts-generation-start"
+          >
+            <div class="flex h-6 w-12 items-center justify-center">
+              <img src="assets/icons/bk.shorts.png" class="h-7" />
+            </div>
+            <div class="flex-1">Create highlights</div>
+          </div>
+        </div>
+        <hr class="bg-shorts-500 my-4 menu-section-separator mx-0" />
+        <div class="flex w-1/2">
+          <div
+            feature="workflows"
+            feature_state="enabled"
+            class="menu-open mr-2 border-solid bg-shorts-700 hover:bg-shorts-500 border-shorts-500 hover:border-shorts-300 text-shorts-100 hover:text-shorts-100 active:bg-shorts-800 text-md relative flex flex-1 items-center gap-1 rounded-lg border px-2 py-4 text-left font-bold leading-none"
+            target-menu="workflows"
+          >
+            <div class="flex h-6 w-12 items-center justify-center">
+              <img src="assets/icons/bk.workflows.png" class="h-5" />
+            </div>
+            <div class="flex-1">Workflows</div>
+            <div
+              class="text-shorts-100 bg-shorts-500 absolute right-0 top-0 ml-1 rounded-bl-md rounded-tr-lg px-1 py-0 text-xs font-normal"
+            >
+              🧪 Beta
+            </div>
+          </div>
+        </div>
+        <!-- Plan message banner -->
+        <div id="plan-message-container" class="hidden mt-4 text-sm">
+          <div id="plan-message-text" class="text-white opacity-50"></div>
+        </div>
+        <hr class="bg-shorts-500 mb-2 mt-4 menu-section-separator mx-0" />
       </div>
 
-      <div class="grid-row flex flex-row mb-4">
+      <div class="flex items-center px-4 relative">
         <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="repetition"
+          feature="share-feedback"
+          feature_state="enabled"
+          class="menu-open cursor-pointer text-md justify-center border-none py-1 pl-1 pr-6 text-left text-[#7F7F7F] hover:text-white"
+          target-menu="feedback"
         >
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/repetition.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Remove repetition
-          </div>
+          Feedback
         </div>
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="profanity"
-        >
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/profanity.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Remove profanity
-          </div>
-        </div>
-      </div>
 
-      <div class="grid-row flex flex-row mb-4">
+        <!-- ALWAYS PRESENT -->
         <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="zooms"
+          class="menu-open cursor-pointer text-md justify-center border-none py-1 px-6 text-center text-[#7F7F7F] hover:text-white"
+          target-menu="settings"
         >
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img src="./assets/icons/zooms.svg" width="20" height="20" alt="" />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Add zooms
-          </div>
+          Settings
         </div>
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="chapters"
-        >
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/chapters.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Add chapters
-          </div>
-        </div>
-      </div>
 
-      <div class="grid-row flex flex-row mb-4">
         <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="captions"
+          feature="help"
+          feature_state="enabled"
+          class="menu-open cursor-pointer text-md justify-center border-none py-1 px-6 text-right text-[#7F7F7F] hover:text-white"
+          target-menu="help"
         >
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/captions.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Add captions
-          </div>
+          Help
         </div>
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="voiceover"
-        >
-          <div
-            class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#a78bfa]"
-          >
-            ✦ New
-          </div>
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/voiceover.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Add voiceover
-          </div>
-        </div>
-      </div>
 
-      <div class="grid-row flex flex-row mb-4">
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="titles"
-        >
-          <div
-            class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#4ade80]"
-          >
-            Beta
-          </div>
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/titles.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Add titles
-          </div>
-        </div>
-        <div class="feature-card-empty flex-1"></div>
-      </div>
-
-      <div class="grid-row flex flex-row mb-4">
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="broll"
-        >
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/bk.broll.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Find B-roll
-          </div>
-        </div>
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="music"
-        >
-          <div
-            class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#a78bfa]"
-          >
-            ✦ New
-          </div>
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/broll-music.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Find music
-          </div>
-        </div>
-      </div>
-
-      <div class="grid-row flex flex-row mb-4">
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="multitrack"
-        >
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/multitrack.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Multi-track
-          </div>
-        </div>
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="highlights"
-        >
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/shorts.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Create highlights
-          </div>
-        </div>
-      </div>
-
-      <div class="grid-row flex flex-row mb-4">
-        <div
-          class="feature-card relative flex-1 flex flex-row items-center py-[11px] px-3 mr-4 bg-[#2a2a2a] rounded-lg cursor-pointer hover:bg-[#333333]"
-          data-feature="workflows"
-        >
-          <div
-            class="badge absolute top-[6px] right-2 text-[10px] font-medium leading-none text-[#4ade80]"
-          >
-            Beta
-          </div>
-          <div
-            class="card-icon w-[36px] h-[36px] min-w-[36px] rounded-[7px] flex flex-row items-center justify-center mr-[10px]"
-          >
-            <img
-              src="./assets/icons/workflows.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-          </div>
-          <div class="card-label text-[13px] font-medium leading-[1.3] flex-1">
-            Workflows
-          </div>
-        </div>
-        <div class="feature-card-empty flex-1"></div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div
-      class="footer flex flex-row items-center justify-between py-2 px-4 border-t border-[#3a3a3a] flex-shrink-0"
-    >
-      <div
-        id="btn-feedback"
-        class="footer-btn flex flex-row items-center bg-transparent border-none text-[#9ca3af] text-xs cursor-pointer hover:text-white"
-      >
-        <img src="./assets/icons/feedback.svg" width="14" height="14" alt="" />
-        Feedback
-      </div>
-      <div
-        id="btn-settings"
-        class="footer-btn flex flex-row items-center bg-transparent border-none text-[#9ca3af] text-xs cursor-pointer hover:text-white"
-      >
-        <img src="./assets/icons/settings.svg" width="14" height="14" alt="" />
-        Settings
-      </div>
-      <div
-        id="btn-help"
-        class="footer-btn flex flex-row items-center bg-transparent border-none text-[#9ca3af] text-xs cursor-pointer hover:text-white"
-      >
-        <img src="./assets/icons/help.svg" width="14" height="14" alt="" />
-        Help
-      </div>
-      <div
-        id="btn-notif"
-        class="footer-icon-btn bg-transparent border-none cursor-pointer"
-      >
         <img
-          src="./assets/icons/notif-none.svg"
-          width="16"
-          height="16"
-          alt="Notifications"
+          id="button-open-notifications-popup"
+          src="assets/icons/notif-none.svg"
+          class="ml-auto opacity-50 hover:opacity-100 cursor-pointer"
         />
+
+        <div
+          id="notifications-popup"
+          class="hidden absolute z-50 bottom-10 w-80 right-0 mx-4 p-4 flex flex-col bg-shorts-700 border-shorts-500 text-shorts-100 rounded-xl border"
+        >
+          <div class="flex items-center justify-between">
+            <div class="text-lg font-medium">Notifications</div>
+            <img
+              id="button-close-notifications-popup"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAx0lEQVR4nO3Vu05CQRCA4X0aQgtiARIK0UgCvv8T2HGJBlCrz2y45CCXAOfW7F9tMdl/ZzKzE0IikagKNDG4If4B7bzSBj6wwvCK+BZmWKCTRzzA0oYof74Q+7gVRn4wulscwRO+theu8RJOlzdmGvnFeygCh/KYzfifdF64dAd6+MzIJ6VLz2T+nXlIPL+FMkE3I9xnX6r0RMmrEauj1I47u/zmcjzLr1XMcD8jXZ35QNqFytX1ZbpvSUxzL4na1mIikQg38Adi/+ESgabdTwAAAABJRU5ErkJggg=="
+              alt="multiply"
+              class="size-7 opacity-50 hover:opacity-100"
+            />
+          </div>
+          <div
+            id="notifications-popup-notification-list"
+            class="mt-4 h-80 overflow-y-auto overflow-x-hidden flex flex-col text-md bg-shorts-800 border-shorts-500 rounded-lg border"
+          ></div>
+        </div>
       </div>
     </div>
+    <!-- MAIN MENU END -->
+
+    <!-- ZOOMS MENU START -->
+    <div class="menu mx-auto px-4" menu-name="zooms">
+      <div
+        class="mb-6 flex items-center justify-between rounded-xl bg-transparent px-0"
+      >
+        <div
+          class="menu-open text-md btn-back rounded-lg border-none bg-transparent pr-4 font-normal text-white opacity-[0.5] hover:opacity-[1]"
+          target-menu="main"
+        >
+          <span class="flex flex-row items-center justify-center">
+            <img
+              src="assets/icons/chevron-left.png"
+              class="mr-[0.3em] h-[0.8em] w-auto align-middle"
+            />
+            Back
+          </span>
+        </div>
+        <div class="flex items-center justify-center">
+          <img
+            src="assets/icons/bk.zooms.png"
+            class="pointer-events-none me-1 h-6 w-6"
+          />
+          <h3 class="text-shorts-100 ms-1 text-center text-lg font-medium">
+            Add zooms
+          </h3>
+        </div>
+        <div class="rounded-lg pl-2 flex">
+          <a
+            class="open-link group relative flex h-6 w-6 cursor-pointer select-none items-center justify-center text-xs text-white opacity-50 transition-all duration-100 hover:opacity-100"
+            link="https://www.youtube.com/watch?v=zwawmaUAIlA"
+          >
+            <img src="assets/icons/youtube.png" class="h-5" />
+            <div
+              class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute right-0 top-6 z-50 hidden w-32 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+            >
+              See video (opens in your browser)
+            </div>
+          </a>
+          <div
+            class="open-link group relative ms-2 flex h-6 w-6 cursor-pointer select-none items-center justify-center rounded-full text-xs text-white opacity-50 transition-all duration-100 hover:opacity-100"
+            link="https://learn.firecut.ai/features/add-zooms"
+          >
+            <div
+              class="flex h-4 w-4 items-center justify-center rounded-full border border-solid border-white"
+              style="opacity: 50%"
+            >
+              <div>?</div>
+            </div>
+            <div
+              class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute right-0 top-6 z-50 hidden w-32 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+            >
+              See documentation (opens in your browser)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-2 rounded-xl bg-transparent">
+        <div class="mb-3 flex flex-col justify-center text-left text-sm">
+          <p>
+            Adds zoom cuts at specific intervals to emphasize certain words,
+            based on what is being spoken.
+          </p>
+          <div class="mt-2">
+            For best results:
+            <ul class="ms-5 list-disc">
+              <li>
+                Ensure your audio does not have repetitions / multiple takes
+              </li>
+              <li>Ensure your audio is clear and loud</li>
+              <li>Mute any tracks with music / sound effects</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="bg-shorts-700 border-shorts-500 my-6 rounded-xl border px-4 pb-4 pt-2"
+      >
+        <div class="pt-1">
+          <div class="mb-1 flex items-center">
+            <h4 class="text-md text-shorts-100 font-medium">Zooms trigger</h4>
+            <div
+              class="group relative ms-2 flex h-6 w-6 cursor-pointer select-none items-center justify-center rounded-full text-xs text-white opacity-50 transition-all duration-100 hover:opacity-100"
+            >
+              <div
+                class="flex h-4 w-4 items-center justify-center rounded-full border border-white border-solid"
+              >
+                <div>?</div>
+              </div>
+              <div
+                class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute -left-12 bottom-3 z-50 hidden w-72 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+              >
+                Choose when to add zooms:
+                <br /><br />
+                <span class="text-shorts-100 font-bold"
+                  >Key phrases (default):</span
+                >
+                Zoom in when speaker is saying something important. <br /><br />
+                <span class="text-shorts-100 font-bold">Every other cut:</span>
+                Zoom into every other clip (specify which video track to
+                analyze). <br /><br />
+                <span class="text-shorts-100 font-bold"
+                  >Every other sentence:</span
+                >
+                Zoom into every other sentence being spoken.
+              </div>
+            </div>
+
+            <span
+              class="text-shorts-100 bg-shorts-400 ms-2 select-none whitespace-nowrap rounded-md px-1 py-[1px] text-xs"
+              >🧪 Beta</span
+            >
+          </div>
+          <div class="flex w-full">
+            <select
+              id="setting-zoom-trigger"
+              name="setting-zoom-trigger"
+              class="bg-shorts-500 text-shorts-100 hover:bg-shorts-400 focus:border-shorts-600 focus:bg-shorts-400 w-full cursor-pointer rounded-sm text-sm leading-tight focus:outline-none"
+            >
+              <option value="keywords" selected>Key phrases (default)</option>
+              <option value="cuts">Every other cut</option>
+              <option value="sentence">Every other sentence</option>
+            </select>
+          </div>
+          <div id="setting-zoom-trigger-video-track-row" class="hidden">
+            <div class="mb-1 mt-2 flex select-none items-center">
+              <div
+                for="setting-zoom-trigger-video-track"
+                class="text-sm font-medium"
+              >
+                Guidance video track
+              </div>
+              <div
+                class="group relative ms-2 flex h-6 w-6 cursor-pointer select-none items-center justify-center rounded-full text-xs text-white opacity-50 transition-all duration-100 hover:opacity-100"
+              >
+                <div
+                  class="flex h-4 w-4 items-center justify-center rounded-full border border-white"
+                >
+                  <div>?</div>
+                </div>
+                <div
+                  class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute -left-12 bottom-3 z-50 hidden w-72 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+                >
+                  Specify which track to analyze to find clips. A zoom will be
+                  applied at every other clip on this track.
+                </div>
+              </div>
+            </div>
+            <select
+              id="setting-zoom-trigger-video-track"
+              name="setting-zoom-trigger"
+              class="bg-shorts-500 text-shorts-100 hover:bg-shorts-400 focus:border-shorts-600 focus:bg-shorts-400 cursor-pointer rounded-sm text-sm leading-tight focus:outline-none"
+            ></select>
+          </div>
+        </div>
+
+        <div id="setting-zoom-frequency">
+          <h4 class="text-md text-shorts-100 mb-1 mt-6 font-medium">
+            Zoom frequency
+          </h4>
+          <div class="flex flex-col">
+            <div class="flex justify-between">
+              <div class="select-none text-sm">Low (less frequent)</div>
+              <div class="select-none text-right text-sm">
+                High (very frequent)
+              </div>
+            </div>
+            <input
+              id="range-zoom-frequency"
+              type="range"
+              value="50"
+              step="10"
+              class="my-2 h-1 w-full cursor-pointer appearance-none rounded-lg bg-gray-700 accent-purple-700 outline-none focus:bg-gray-700 active:bg-gray-700"
+            />
+          </div>
+        </div>
+        <div id="setting-zoom-phrase-size" class="mt-5">
+          <div id="container-zoom-words-range">
+            <div class="flex items-center justify-between">
+              <div class="w-48">
+                <div class="flex w-full items-center">
+                  <h4
+                    class="text-md text-shorts-100 font-medium whitespace-nowrap"
+                  >
+                    Zoom duration
+                  </h4>
+                  <span
+                    class="text-shorts-100 bg-shorts-400 ms-2 select-none whitespace-nowrap rounded-md px-1 py-[1px] text-xs"
+                    >🧪 Beta</span
+                  >
+                  <div
+                    class="group relative ms-2 -mt-1 flex h-6 w-6 cursor-pointer select-none items-center justify-center rounded-full text-xs text-white opacity-50 transition-all duration-100 hover:opacity-100"
+                  >
+                    <div
+                      class="flex h-4 w-4 items-center justify-center rounded-full border border-white"
+                    >
+                      <div>?</div>
+                    </div>
+                    <div
+                      class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute left-0 top-6 z-50 hidden w-60 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+                    >
+                      Control the approximate duration of each zoom. This is
+                      approximate (not a hard limit).
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="w-12">
+                  <div
+                    class="w-full select-none rounded-md border-transparent bg-transparent text-center text-sm outline-none focus:border-transparent"
+                  >
+                    <span id="value-zoom-words-range">Auto</span>
+                  </div>
+                </div>
+                <button
+                  id="reset-zoom-words-range"
+                  class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 text-shorts-100 cursor-pointer select-none rounded border px-2 py-1 text-xs font-light transition-colors duration-100"
+                >
+                  ↺
+                </button>
+              </div>
+            </div>
+            <div class="mt-5">
+              <div
+                id="range-zoom-words"
+                data-min="1"
+                data-max="20"
+                data-value-min="1"
+                data-value-max="20"
+                data-min-distance="8"
+                class="double-range relative h-1 w-full cursor-pointer appearance-none rounded-lg border-[1px] border-[#2e2e2e] bg-gray-700 outline-none focus:bg-gray-700 active:bg-gray-700"
+              >
+                <div
+                  class="double-range-highlight absolute h-full w-full cursor-pointer rounded-lg bg-gray-400"
+                  style="left: 0%"
+                ></div>
+                <div
+                  class="double-range-left absolute"
+                  tabindex="0"
+                  style="left: 0%; top: -7px"
+                >
+                  <div
+                    class="double-range-slider-dot absolute h-4 w-4 cursor-pointer rounded-full bg-purple-700"
+                  ></div>
+                  <div
+                    class="double-range-slider-surface fixed inset-0 hidden"
+                  ></div>
+                </div>
+                <div class="double-range-right absolute" style="top: -7px">
+                  <div
+                    class="double-range-slider-dot absolute h-4 w-4 cursor-pointer rounded-full bg-purple-700"
+                  ></div>
+                  <div
+                    class="double-range-slider-surface fixed inset-0 hidden"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="individual-zoom-settings">
+          <h4 class="text-md text-shorts-100 mt-6 font-medium">Zoom style</h4>
+          <div class="flex flex-col items-start gap-4" id="zoom-settings">
+            <!-- Image Preview for zoom -->
+            <div
+              class="relative mt-1 mx-auto flex max-w-72 cursor-move select-none items-center justify-end"
+              id="zoom-center-container"
+            >
+              <img
+                loading="lazy"
+                class="max-w-72 object-contain"
+                id="zoom-center-preview-img"
+                src=""
+                draggable="false"
+              />
+              <div
+                id="zoom-center-spinner"
+                class="flex h-6 w-6 items-center justify-center rounded-xl bg-transparent p-1"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="h-6 w-6 animate-spin fill-gray-100 text-gray-600"
+                  viewBox="0 0 100 101"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                    fill="currentFill"
+                  />
+                </svg>
+              </div>
+
+              <div
+                class="absolute flex hidden items-center justify-center border border-white"
+                id="zoom-center-box"
+                style="height: 50%; width: 50%; left: 25%; top: 25%"
+              >
+                <div class="h-1 w-1 rounded-full bg-white"></div>
+              </div>
+
+              <canvas id="face-canvas" class="absolute h-full w-full"></canvas>
+            </div>
+
+            <div id="setting-zoom-style" class="w-full">
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                  <div class="w-20">
+                    <div
+                      class="me-2 w-full select-none rounded-md border-transparent bg-transparent text-left text-sm font-medium outline-none focus:border-transparent"
+                    >
+                      Scale
+                    </div>
+                  </div>
+                  <div class="w-20">
+                    <div
+                      class="me-2 w-full select-none rounded-md border-transparent bg-transparent text-center text-sm font-medium outline-none focus:border-transparent"
+                    >
+                      <span id="value-zoom-scale">120%</span>
+                    </div>
+                  </div>
+                  <div class="grow mr-4">
+                    <input
+                      id="range-zoom-scale"
+                      type="range"
+                      value="120"
+                      min="100"
+                      max="300"
+                      step="5"
+                      class="my-2 h-1 w-full cursor-pointer appearance-none rounded-lg bg-gray-700 accent-purple-700 outline-none focus:bg-gray-700 active:bg-gray-700"
+                    />
+                  </div>
+                  <button
+                    id="reset-zoom-scale-range"
+                    class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 text-shorts-100 cursor-pointer select-none rounded border px-2 py-1 text-xs font-light transition-colors duration-100"
+                  >
+                    ↺
+                  </button>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="w-20">
+                    <div
+                      class="me-2 w-full select-none rounded-md border-transparent bg-transparent text-left text-sm font-medium outline-none focus:border-transparent"
+                    >
+                      Center X
+                    </div>
+                  </div>
+                  <div class="w-20">
+                    <div
+                      class="me-2 w-full select-none rounded-md border-transparent bg-transparent text-center text-sm font-medium outline-none focus:border-transparent"
+                    >
+                      <span id="value-zoom-center-horizontal-position"
+                        >50%</span
+                      >
+                    </div>
+                  </div>
+                  <div class="grow mr-4">
+                    <input
+                      type="range"
+                      id="range-zoom-center-horizontal-position"
+                      value="50"
+                      min="0"
+                      max="100"
+                      step="1"
+                      class="my-2 h-1 w-full cursor-pointer appearance-none rounded-lg bg-gray-700 accent-purple-700 outline-none focus:bg-gray-700 active:bg-gray-700"
+                    />
+                  </div>
+                  <button
+                    id="reset-zoom-center-horizontal-position-range"
+                    class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 text-shorts-100 cursor-pointer select-none rounded border px-2 py-1 text-xs font-light transition-colors duration-100"
+                  >
+                    ↺
+                  </button>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="w-20">
+                    <div
+                      class="me-2 w-full select-none rounded-md border-transparent bg-transparent text-left text-sm font-medium outline-none focus:border-transparent"
+                    >
+                      Center Y
+                    </div>
+                  </div>
+                  <div class="w-20">
+                    <div
+                      class="me-2 w-full select-none rounded-md border-transparent bg-transparent text-center text-sm font-medium outline-none focus:border-transparent"
+                    >
+                      <span id="value-zoom-center-vertical-position">50%</span>
+                    </div>
+                  </div>
+                  <div class="grow mr-4">
+                    <input
+                      type="range"
+                      id="range-zoom-center-vertical-position"
+                      value="50"
+                      min="0"
+                      max="100"
+                      step="1"
+                      class="my-2 h-1 w-full cursor-pointer appearance-none rounded-lg bg-gray-700 accent-purple-700 outline-none focus:bg-gray-700 active:bg-gray-700"
+                    />
+                  </div>
+                  <button
+                    id="reset-zoom-center-vertical-position-range"
+                    class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 text-shorts-100 cursor-pointer select-none rounded border px-2 py-1 text-xs font-light transition-colors duration-100"
+                  >
+                    ↺
+                  </button>
+                </div>
+                <label
+                  id="zoom-face-detection-label"
+                  class="relative mt-0 flex w-full cursor-pointer items-center justify-between"
+                >
+                  <div class="flex items-center">
+                    <div
+                      class="flex w-full gap-2 select-none items-center rounded-md border-transparent bg-transparent text-left text-sm outline-none focus:border-transparent"
+                    >
+                      <div>Use face detection</div>
+                      <div
+                        class="group relative flex h-4 w-4 items-center justify-center rounded-full border border-shorts-200"
+                      >
+                        ?
+                        <div
+                          class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute left-30 sm:-left-20 bottom-3 z-50 hidden w-72 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+                        >
+                          <b>ON:</b> Attempts to find the speaker's face and
+                          zoom in on it. If no face is found, the position
+                          selected above with Center X and Y will be used. This
+                          is designed for single-person shots; if multiple faces
+                          exist, the most prominent will be used.<br /><br />
+                          <b>OFF:</b> Always use the position selected here with
+                          Center X and Y.
+                        </div>
+                      </div>
+                      <!-- <span class="text-shorts-100 bg-shorts-400 ms-2 select-none whitespace-nowrap rounded-md px-1 py-[1px] text-xs">🧪 Beta</span> -->
+                    </div>
+                  </div>
+
+                  <input
+                    type="checkbox"
+                    id="checkbox-zoom-face-detection"
+                    value=""
+                    class="peer sr-only accent-purple-700"
+                  />
+                  <div
+                    class="peer relative h-4 w-7 rounded-full border-gray-600 bg-gray-700 after:absolute after:right-[14px] after:top-[2px] after:h-3 after:w-3 after:rounded-full after:border after:border-gray-400 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-0"
+                  ></div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 mt-5">
+          <div class="mb-1 flex items-center">
+            <span class="text-md text-shorts-100 font-medium">Zoom curve</span>
+          </div>
+          <div class="mb-1 flex flex-wrap items-center space-x-1 text-sm">
+            <div>Presets:</div>
+            <button
+              class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 zoom-curve-preset m-0 rounded px-1 py-0 text-xs font-light text-white outline-none transition-colors duration-100"
+              data-preset="sharp-cut"
+            >
+              Sharp cut
+            </button>
+            <button
+              class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 zoom-curve-preset m-0 rounded px-1 py-0 text-xs font-light text-white outline-none transition-colors duration-100"
+              data-preset="smooth-in-sharp-out"
+            >
+              Smooth in, sharp out
+            </button>
+            <button
+              class="bg-shorts-500 hover:bg-shorts-400 active:bg-shorts-600 border-shorts-400 hover:border-shorts-300 active:border-shorts-500 zoom-curve-preset m-0 rounded px-1 py-0 text-xs font-light text-white outline-none transition-colors duration-100"
+              data-preset="smooth-in-ramp-out"
+            >
+              Smooth in, ramp out
+            </button>
+          </div>
+          <div class="mb-3 flex flex-col justify-center text-left text-sm">
+            <p>Click curves to change shape, drag edges to change duration</p>
+          </div>
+
+          <!-- Hidden inputs for zoom power and duration (so we keep state in HTML) -->
+          <input type="hidden" id="zoom-curve-start-power" value="2" />
+          <input type="hidden" id="zoom-curve-start-duration" value="0.5" />
+
+          <input type="hidden" id="zoom-curve-end-power" value="2" />
+          <input type="hidden" id="zoom-curve-end-duration" value="0.5" />
+
+          <!-- Zoom curve switcher menu -->
+          <div
+            id="zoom-curve-switcher"
+            class="absolute z-50 flex hidden space-x-1 rounded-lg border border-zinc-600 bg-zinc-800 p-1 shadow-xl"
+          >
+            <div class="grid grow grid-cols-3 gap-3">
+              <div>
+                <input
+                  type="radio"
+                  class="peer hidden accent-purple-700"
+                  name="zoom-animation-radio"
+                  value="0"
+                  id="zoom-animation-radio-0"
+                />
+                <label
+                  for="zoom-animation-radio-0"
+                  class="flex h-12 w-full cursor-pointer items-center justify-center rounded border-2 border-transparent hover:bg-zinc-700 peer-checked:border-[#015CC8] peer-checked:bg-zinc-700"
+                >
+                  <img
+                    loading="lazy"
+                    src="../assets/images/easing/p0.svg"
+                    class="h-full opacity-50"
+                  />
+                </label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  class="peer hidden accent-purple-700"
+                  name="zoom-animation-radio"
+                  value="1"
+                  id="zoom-animation-radio-1"
+                />
+                <label
+                  for="zoom-animation-radio-1"
+                  class="flex h-12 w-full cursor-pointer items-center justify-center rounded border-2 border-transparent hover:bg-zinc-700 peer-checked:border-[#015CC8] peer-checked:bg-zinc-700"
+                >
+                  <img
+                    loading="lazy"
+                    src="../assets/images/easing/p1.svg"
+                    class="h-full opacity-50"
+                  />
+                </label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  class="peer hidden accent-purple-700"
+                  name="zoom-animation-radio"
+                  value="1.5"
+                  id="zoom-animation-radio-1.5"
+                />
+                <label
+                  for="zoom-animation-radio-1.5"
+                  class="flex h-12 w-full cursor-pointer items-center justify-center rounded border-2 border-transparent hover:bg-zinc-700 peer-checked:border-[#015CC8] peer-checked:bg-zinc-700"
+                >
+                  <img
+                    loading="lazy"
+                    src="../assets/images/easing/p1.5.svg"
+                    class="h-full opacity-50"
+                  />
+                </label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  class="peer hidden accent-purple-700"
+                  name="zoom-animation-radio"
+                  value="2"
+                  id="zoom-animation-radio-2"
+                />
+                <label
+                  for="zoom-animation-radio-2"
+                  class="flex h-12 w-full cursor-pointer items-center justify-center rounded border-2 border-transparent hover:bg-zinc-700 peer-checked:border-[#015CC8] peer-checked:bg-zinc-700"
+                >
+                  <img
+                    loading="lazy"
+                    src="../assets/images/easing/p2.svg"
+                    class="h-full opacity-50"
+                  />
+                </label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  class="peer hidden accent-purple-700"
+                  name="zoom-animation-radio"
+                  value="3"
+                  id="zoom-animation-radio-3"
+                />
+                <label
+                  for="zoom-animation-radio-3"
+                  class="flex h-12 w-full cursor-pointer items-center justify-center rounded border-2 border-transparent hover:bg-zinc-700 peer-checked:border-[#015CC8] peer-checked:bg-zinc-700"
+                >
+                  <img
+                    loading="lazy"
+                    src="../assets/images/easing/p3.svg"
+                    class="h-full opacity-50"
+                  />
+                </label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  class="peer hidden accent-purple-700"
+                  name="zoom-animation-radio"
+                  value="4"
+                  id="zoom-animation-radio-4"
+                />
+                <label
+                  for="zoom-animation-radio-4"
+                  class="flex h-12 w-full cursor-pointer items-center justify-center rounded border-2 border-transparent hover:bg-zinc-700 peer-checked:border-[#015CC8] peer-checked:bg-zinc-700"
+                >
+                  <img
+                    loading="lazy"
+                    src="../assets/images/easing/p4.svg"
+                    class="h-full opacity-50"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            id="zoom-curve-switcher-bg"
+            class="fixed left-0 top-0 z-10 hidden h-full w-full bg-black opacity-30"
+          ></div>
+
+          <!-- Zoom curve container -->
+          <div
+            id="zoom-curve-container"
+            class="relative mt-2 flex h-12 w-full justify-between overflow-hidden rounded-md border border-gray-900 bg-gray-800"
+          >
+            <!-- Zoom start curve -->
+            <div
+              id="zoom-curve-start"
+              class="relative flex h-full justify-end overflow-hidden bg-gray-800"
+              style="width: 25%"
+            >
+              <!-- P0 -->
+              <div class="zoom-curve-svg-container" data-power="0">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full opacity-60"
+                  viewBox="65 59 265 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-00187cb7" />
+                    <g id="graphpaper-00187cb7">
+                      <g id="axis-00187cb7">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-00187cb7">
+                      <g id="sketch-00187cb7">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 67.6653510526192 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-00187cb7" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P1 -->
+              <div class="zoom-curve-svg-container hidden" data-power="1">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full opacity-60"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-00187cb7" />
+                    <g id="graphpaper-00187cb7">
+                      <g id="axis-00187cb7">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-00187cb7">
+                      <g id="sketch-00187cb7">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-00187cb7">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200 200 L 200 200 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-00187cb7" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P1.5 -->
+              <div class="zoom-curve-svg-container hidden" data-power="1.5">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full opacity-60"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-299af35d" />
+                    <g id="graphpaper-299af35d">
+                      <g id="axis-299af35d">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-299af35d">
+                      <g id="sketch-299af35d">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 69.2268218366591 332.1650340439959 L 71.76421186072392 331.61327912375947 L 74.78956150480121 330.68166618184796 L 78.30287076889095 329.318701413004 L 82.20654772899069 327.5144669323444 L 86.50059238510039 325.2287341005876 L 91.08741281321757 322.4809135062066 L 96.06460093734472 319.17865942853234 L 101.33456483347936 315.3517166633677 L 106.99489642562396 310.89381839705493 L 112.94800378977605 305.84592690163896 L 119.19388692593562 300.180655484107 L 125.83013775810515 293.7731928270898 L 132.75916436228218 286.6812847507799 L 140.07855866246916 278.76856553482855 L 147.69072873466365 270.1039306414288 L 155.69326650286808 260.5397081613874 L 164.0861719670825 250.0309313867578 L 172.8694451273069 238.532632030757 L 181.94549405953876 226.1359055540213 L 191.21672683977562 212.95381899053808 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-299af35d">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200.00000000000003 199.99999999999994 L 200.00000000000003 199.99999999999994 L 209.56400855224433 185.91639868196648 L 218.9328332564837 172.64212624049503 L 228.10647411271802 160.1651767503018 L 237.08493112094743 148.47417044825895 L 245.6730204331668 137.79529374426173 L 253.87074204937628 128.08359640256708 L 261.67809596957574 119.29413366120926 L 269.0950821937652 111.38196778485488 L 276.1217007219447 104.30217018375652 L 282.8555434781167 97.92026864414748 L 289.1990185382788 92.29268726196273 L 295.24971782643337 87.2971198282674 L 300.91004941857796 82.97861762931788 L 306.1800133147126 79.29284779153829 L 311.15720143883976 76.13711089937999 L 315.7440218669569 73.5396685725521 L 319.94047459906415 71.45841021579446 L 323.7465596351614 69.85315319644718 L 327.1622769752487 68.68793233670658 L 330.0900346953234 67.95768266997811 L 332.2370570233783 67.66800128548459 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-299af35d" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P2 -->
+              <div class="zoom-curve-svg-container hidden" data-power="2">
+                <svg
+                  class="pointer-events-none absolute h-full w-full opacity-60"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-46e38ce2" />
+                    <g id="graphpaper-46e38ce2">
+                      <g id="axis-46e38ce2">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="2"
+                              stroke-dasharray=""
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-46e38ce2">
+                      <g id="sketch-46e38ce2">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            vector-effect="non-scaling-stroke"
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 71.8618037847264 332.2015755937815 L 76.05825651683362 331.8023555329837 L 80.25470924894083 331.1369887649874 L 84.45116198104803 330.2054752897925 L 88.64761471315524 329.00781510739904 L 92.94165936926494 327.50679949752 L 97.23570402537464 325.72711432293767 L 101.62734060548684 323.6187401240785 L 106.11656910960153 321.1622448806765 L 110.60579761371622 318.4011707122166 L 115.19261804183338 315.26549037529577 L 119.87703039395308 311.7349082043029 L 124.65903467007524 307.7886967109543 L 129.6362227942024 303.3143660890435 L 134.71100284233205 298.3668297884334 L 139.8833748144642 292.92363303014974 L 145.2509306346013 286.84752817475857 L 150.81367030274342 280.0910147282762 L 156.47400189488803 272.73592308715615 L 162.32951733503762 264.61765684270097 L 168.1850327751872 255.9812033911529 L 174.0405482153368 246.82656273251195 L 179.9936555794889 236.98813087184465 L 185.94676294364098 226.61409495629056 L 191.89987030779307 215.70445498584957 L 197.95056959594766 204.06712184167026 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-46e38ce2">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            vector-effect="non-scaling-stroke"
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200.00000000000003 199.99999999999994 L 200.00000000000003 199.99999999999994 L 206.14829121215706 187.98906827359585 L 212.19899050031165 176.7265572092137 L 218.24968978846624 166.01735492929407 L 224.2027971526183 156.02087597046346 L 230.15590451677042 146.56000106651967 L 236.01141995692 137.7767279062953 L 241.8669353970696 129.5116419531638 L 247.72245083721916 121.76474320712524 L 253.48037435336624 114.65226393754824 L 259.04311402150836 108.25675424534057 L 264.41066984164553 102.52898634582843 L 269.68063373778017 97.32897772265136 L 274.7554137859098 92.71826310665156 L 279.7326019100369 88.57427682926252 L 284.61219811016167 84.87499593418275 L 289.29661046228125 81.66223525020686 L 293.8834308903985 78.8377551193235 L 298.37265939451316 76.38125987592153 L 302.86188789862786 74.22934355757741 L 307.25352447874 72.41892700279669 L 311.5475691348497 70.9305781913132 L 315.8416137909594 69.72089894453308 L 320.0380665230666 68.80795384425903 L 324.23451925517384 68.1611554511835 L 328.43097198728105 67.78050376530649 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-46e38ce2" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P3 -->
+              <div class="zoom-curve-svg-container hidden" data-power="3">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full opacity-60"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-6c5922ee" />
+                    <g id="graphpaper-6c5922ee">
+                      <g id="axis-6c5922ee">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-6c5922ee">
+                      <g id="sketch-6c5922ee">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 80.74266886895329 332.2069436548809 L 87.7692873971328 331.8706722575701 L 93.6248028372824 331.33570893071953 L 98.89476673341703 330.5954693339324 L 103.7743629335417 329.6462131270682 L 108.36118336165887 328.48604991827244 L 112.65522801776856 327.1347215828703 L 116.85168074987578 325.53970137231926 L 120.9505415579805 323.695470809412 L 124.95181044208272 321.5994819493082 L 128.85548740218246 319.2519567539569 L 132.75916436228218 316.58495920969 L 136.56524939837942 313.6575850666131 L 140.46892635847914 310.29975404407986 L 144.37260331857885 306.56181716462305 L 148.2762802786786 302.42339341714757 L 152.27754916278082 297.7445508662918 L 156.27881804688303 292.60158588016577 L 160.37767885498778 286.8289995003489 L 164.37894773909 280.67928039667754 L 168.3802166231922 273.9990591784124 L 172.28389358329193 266.9495391874323 L 176.18757054339164 259.3538080991036 L 180.0912475034914 251.1914849023312 L 183.9949244635911 242.44218858601997 L 187.89860142369085 233.08553813907474 L 191.80227838379056 223.10115255040049 L 195.7059553438903 212.4686508089021 L 199.60963230399003 201.1676519034845 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-6c5922ee">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200.00000000000003 199.99999999999991 L 200.00000000000003 199.99999999999991 L 204.00126888410222 188.3554822840319 L 207.90494584420196 177.67355022156192 L 211.80862280430168 167.64126288774824 L 215.7122997644014 158.23823927149573 L 219.61597672450114 149.44409836170928 L 223.51965368460085 141.2384591472938 L 227.42333064470057 133.6009406171542 L 231.32700760480034 126.51116176019536 L 235.32827648890256 119.79126157940769 L 239.32954537300478 113.60346947319749 L 243.4284061811095 107.79354667332092 L 247.62485891321668 102.3752761569844 L 251.7237197213214 97.57660658285243 L 255.72498860542362 93.33993834749057 L 259.7262574895259 89.52349630784627 L 263.6299344496256 86.18413557661799 L 267.53361140972527 83.20348064066346 L 271.43728836982507 80.56115048888756 L 275.43855725392723 78.1825518414199 L 279.43982613802945 76.11604475077178 L 283.5386869461342 74.29979476847166 L 287.7351396782414 72.73109344921693 L 292.0291843343511 71.40425799389834 L 296.5184128384658 70.28892127981527 L 301.30041711458796 69.37212443382202 L 306.4727890867201 68.65306712970414 L 312.13312067886466 68.13611753827979 L 318.6717795870318 67.81099036106957 L 327.06468505124616 67.67370854098141 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-6c5922ee" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P4 -->
+              <div class="zoom-curve-svg-container hidden" data-power="4">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full opacity-60"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-5b88422f" />
+                    <g id="graphpaper-5b88422f">
+                      <g id="axis-5b88422f">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-5b88422f">
+                      <g id="sketch-5b88422f">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 91.08741281321757 332.2047876377483 L 99.57791020143448 331.8871151667955 L 106.11656910960153 331.3914144005514 L 111.67930877774364 330.7152980025115 L 116.6564969018708 329.84894340828833 L 121.14572540598547 328.8047924866773 L 125.34217813809269 327.55952405405696 L 129.2458550981924 326.12949946002885 L 132.95434821028715 324.4942297644067 L 136.56524939837942 322.6104549209634 L 140.07855866246916 320.4701218481673 L 143.49427600255643 318.06810144701365 L 146.8124014186412 315.4022602952889 L 150.13052683472597 312.3791933582723 L 153.4486522508107 308.96832938986563 L 156.7667776668955 305.13784180294726 L 160.18249500698278 300.72147064143417 L 163.59821234707005 295.7878888140166 L 166.9163377631548 290.4631389288736 L 170.13687125523705 284.75820173857926 L 173.25981282331685 278.68784488005207 L 176.38275439139665 272.0543253739137 L 179.50569595947644 264.82384464997705 L 182.5310456035537 257.2172289913251 L 185.556395247631 248.9852353610441 L 188.5817448917083 240.09449119914223 L 191.6070945357856 230.510756398995 L 194.6324441798629 220.19892330734493 L 197.65779382394015 209.12301672430152 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-5b88422f">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200.00000000000003 199.9999999999999 L 200.00000000000003 199.9999999999999 L 203.12294156807977 187.94350446853312 L 206.24588313615956 176.7302160559964 L 209.36882470423936 166.31987198479007 L 212.49176627231913 156.67319449939637 L 215.6147078403989 147.75189086637923 L 218.7376494084787 139.51865337438466 L 221.86059097655848 131.93715933414066 L 224.98353254463825 124.97207107845728 L 228.10647411271802 118.58903596222635 L 231.32700760480034 112.58084816349037 L 234.54754109688258 107.12068264339675 L 237.86566651296735 102.03192514893342 L 241.28138385305462 97.32468449063455 L 244.7946931171444 93.00523279056668 L 248.21041045723166 89.27580425736741 L 251.6261277973189 85.97402327868915 L 255.04184513740617 83.0658764706861 L 258.4575624774934 80.51876012202237 L 261.9708717415832 78.24267657992903 L 265.48418100567295 76.28316467738358 L 269.1926741177677 74.52421098725114 L 272.9987591538649 73.01406200021125 L 277.0000280379671 71.71080300159406 L 281.2940726940768 70.59382636355934 L 285.88089312219404 69.67473358400792 L 290.9556731703237 68.93037351717504 L 296.61600476246826 68.36771005465954 L 303.34984751864033 67.96990245859172 L 311.9379368308597 67.74003374322405 L 325.89358196321626 67.66609374771076 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-5b88422f" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P5 -->
+              <div class="zoom-curve-svg-container hidden" data-power="5">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full opacity-60"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-cb7e9cab" />
+                    <g id="graphpaper-cb7e9cab">
+                      <g id="axis-cb7e9cab">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-cb7e9cab">
+                      <g id="sketch-cb7e9cab">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 100.7490132894644 332.2054158917681 L 109.92265414569876 331.8952949281058 L 116.6564969018708 331.4144246253864 L 122.21923657001291 330.7590917955605 L 127.00124084613508 329.9364068705844 L 131.29528550224478 328.9335982899791 L 135.1989624623445 327.7542258682118 L 138.80986365043674 326.3915527009372 L 142.225580990524 324.8211554504266 L 145.4461144826063 323.0521110931034 L 148.56905605068607 321.03284485901906 L 151.59440569476334 318.75566177060927 L 154.61975533884066 316.1253720149012 L 157.54751305891546 313.2064855504037 L 160.47527077899025 309.88147677009533 L 163.40302849906504 306.1093674288795 L 166.33078621913984 301.84651106000905 L 169.16095201521216 297.2156750318157 L 171.89352588728195 292.2266139300796 L 174.62609975935175 286.68600374465484 L 177.26108170741907 280.7792795102411 L 179.8960636554864 274.27634779726895 L 182.5310456035537 267.1331715961437 L 185.16602755162103 259.30359695378104 L 187.70341757568585 251.0701842046106 L 190.24080759975067 242.1103909774941 L 192.77819762381552 232.37718064500805 L 195.3155876478803 221.8215284743548 L 197.95056959594766 209.93463973930835 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-cb7e9cab">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200.00000000000003 199.99999999999986 L 200.00000000000003 199.99999999999986 L 202.63498194806732 187.33941153856165 L 205.26996389613464 175.66691467218917 L 207.90494584420196 164.92351033922287 L 210.53992779226925 155.05259622619818 L 213.17490974033657 145.999917065693 L 215.80989168840392 137.71351493417723 L 218.44487363647124 130.14367954986062 L 221.07985558453854 123.24289857054163 L 223.71483753260583 116.96580789145557 L 226.44741140467568 111.0687572140333 L 229.17998527674547 105.75000892373811 L 232.0101510728178 100.80444996218739 L 234.93790879289256 96.24308761172327 L 237.96325843696985 92.07196278917442 L 241.08620000504965 88.29221368474009 L 244.11154964912694 85.09213609918785 L 247.13689929320424 82.30215785767254 L 250.259840861284 79.80916489074357 L 253.38278242936377 77.6680622544259 L 256.6033159214461 75.78773899124621 L 259.92144133753084 74.15759228242479 L 263.43475060162064 72.7282426327451 L 267.1432437137154 71.50469866216645 L 271.14451259781754 70.4624821792782 L 275.53614917792976 69.59283178414887 L 280.4157453780544 68.89543084341256 L 286.076076970199 68.35601506981214 L 292.9075116503735 67.9760086274191 L 301.9835605826054 67.74933128404808 L 317.3054926509968 67.66785127550492 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-cb7e9cab" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Zoom start curve: Curve type -->
+              <div
+                id="zoom-curve-start-change-shape"
+                class="h-full grow cursor-pointer bg-gray-700 hover:bg-gray-600"
+              ></div>
+
+              <!-- Zoom start curve: Resize handle -->
+              <div
+                id="zoom-curve-start-resize"
+                class="h-full w-full max-w-2 cursor-ew-resize bg-gray-700 hover:bg-gray-600"
+              ></div>
+            </div>
+
+            <!-- Filler white line in middle showing max zoom -->
+            <div class="mt-[1px] h-[1px] grow bg-white opacity-40"></div>
+
+            <!-- Zoom end curve -->
+            <div
+              id="zoom-curve-end"
+              class="relative flex h-full justify-end overflow-hidden bg-gray-800"
+              style="width: 12%"
+            >
+              <!-- P0 -->
+              <div class="zoom-curve-svg-container" data-power="0">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full -scale-x-100 opacity-60"
+                  viewBox="65 59 265 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-00187cb7" />
+                    <g id="graphpaper-00187cb7">
+                      <g id="axis-00187cb7">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-00187cb7">
+                      <g id="sketch-00187cb7">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 67.6653510526192 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-00187cb7" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P1 -->
+              <div class="zoom-curve-svg-container hidden" data-power="1">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full -scale-x-100 opacity-60"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-00187cb7" />
+                    <g id="graphpaper-00187cb7">
+                      <g id="axis-00187cb7">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-00187cb7">
+                      <g id="sketch-00187cb7">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-00187cb7">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200 200 L 200 200 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-00187cb7" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P1.5 -->
+              <div class="zoom-curve-svg-container hidden" data-power="1.5">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full -scale-x-100 opacity-60"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-299af35d" />
+                    <g id="graphpaper-299af35d">
+                      <g id="axis-299af35d">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-299af35d">
+                      <g id="sketch-299af35d">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 69.2268218366591 332.1650340439959 L 71.76421186072392 331.61327912375947 L 74.78956150480121 330.68166618184796 L 78.30287076889095 329.318701413004 L 82.20654772899069 327.5144669323444 L 86.50059238510039 325.2287341005876 L 91.08741281321757 322.4809135062066 L 96.06460093734472 319.17865942853234 L 101.33456483347936 315.3517166633677 L 106.99489642562396 310.89381839705493 L 112.94800378977605 305.84592690163896 L 119.19388692593562 300.180655484107 L 125.83013775810515 293.7731928270898 L 132.75916436228218 286.6812847507799 L 140.07855866246916 278.76856553482855 L 147.69072873466365 270.1039306414288 L 155.69326650286808 260.5397081613874 L 164.0861719670825 250.0309313867578 L 172.8694451273069 238.532632030757 L 181.94549405953876 226.1359055540213 L 191.21672683977562 212.95381899053808 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-299af35d">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200.00000000000003 199.99999999999994 L 200.00000000000003 199.99999999999994 L 209.56400855224433 185.91639868196648 L 218.9328332564837 172.64212624049503 L 228.10647411271802 160.1651767503018 L 237.08493112094743 148.47417044825895 L 245.6730204331668 137.79529374426173 L 253.87074204937628 128.08359640256708 L 261.67809596957574 119.29413366120926 L 269.0950821937652 111.38196778485488 L 276.1217007219447 104.30217018375652 L 282.8555434781167 97.92026864414748 L 289.1990185382788 92.29268726196273 L 295.24971782643337 87.2971198282674 L 300.91004941857796 82.97861762931788 L 306.1800133147126 79.29284779153829 L 311.15720143883976 76.13711089937999 L 315.7440218669569 73.5396685725521 L 319.94047459906415 71.45841021579446 L 323.7465596351614 69.85315319644718 L 327.1622769752487 68.68793233670658 L 330.0900346953234 67.95768266997811 L 332.2370570233783 67.66800128548459 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-299af35d" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P2 -->
+              <div class="zoom-curve-svg-container hidden" data-power="2">
+                <svg
+                  class="pointer-events-none absolute h-full w-full -scale-x-100 opacity-60"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-46e38ce2" />
+                    <g id="graphpaper-46e38ce2">
+                      <g id="axis-46e38ce2">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="2"
+                              stroke-dasharray=""
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-46e38ce2">
+                      <g id="sketch-46e38ce2">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            vector-effect="non-scaling-stroke"
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 71.8618037847264 332.2015755937815 L 76.05825651683362 331.8023555329837 L 80.25470924894083 331.1369887649874 L 84.45116198104803 330.2054752897925 L 88.64761471315524 329.00781510739904 L 92.94165936926494 327.50679949752 L 97.23570402537464 325.72711432293767 L 101.62734060548684 323.6187401240785 L 106.11656910960153 321.1622448806765 L 110.60579761371622 318.4011707122166 L 115.19261804183338 315.26549037529577 L 119.87703039395308 311.7349082043029 L 124.65903467007524 307.7886967109543 L 129.6362227942024 303.3143660890435 L 134.71100284233205 298.3668297884334 L 139.8833748144642 292.92363303014974 L 145.2509306346013 286.84752817475857 L 150.81367030274342 280.0910147282762 L 156.47400189488803 272.73592308715615 L 162.32951733503762 264.61765684270097 L 168.1850327751872 255.9812033911529 L 174.0405482153368 246.82656273251195 L 179.9936555794889 236.98813087184465 L 185.94676294364098 226.61409495629056 L 191.89987030779307 215.70445498584957 L 197.95056959594766 204.06712184167026 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-46e38ce2">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            vector-effect="non-scaling-stroke"
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200.00000000000003 199.99999999999994 L 200.00000000000003 199.99999999999994 L 206.14829121215706 187.98906827359585 L 212.19899050031165 176.7265572092137 L 218.24968978846624 166.01735492929407 L 224.2027971526183 156.02087597046346 L 230.15590451677042 146.56000106651967 L 236.01141995692 137.7767279062953 L 241.8669353970696 129.5116419531638 L 247.72245083721916 121.76474320712524 L 253.48037435336624 114.65226393754824 L 259.04311402150836 108.25675424534057 L 264.41066984164553 102.52898634582843 L 269.68063373778017 97.32897772265136 L 274.7554137859098 92.71826310665156 L 279.7326019100369 88.57427682926252 L 284.61219811016167 84.87499593418275 L 289.29661046228125 81.66223525020686 L 293.8834308903985 78.8377551193235 L 298.37265939451316 76.38125987592153 L 302.86188789862786 74.22934355757741 L 307.25352447874 72.41892700279669 L 311.5475691348497 70.9305781913132 L 315.8416137909594 69.72089894453308 L 320.0380665230666 68.80795384425903 L 324.23451925517384 68.1611554511835 L 328.43097198728105 67.78050376530649 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="10"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-46e38ce2" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P3 -->
+              <div class="zoom-curve-svg-container hidden" data-power="3">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full -scale-x-100 opacity-60"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-6c5922ee" />
+                    <g id="graphpaper-6c5922ee">
+                      <g id="axis-6c5922ee">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-6c5922ee">
+                      <g id="sketch-6c5922ee">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 80.74266886895329 332.2069436548809 L 87.7692873971328 331.8706722575701 L 93.6248028372824 331.33570893071953 L 98.89476673341703 330.5954693339324 L 103.7743629335417 329.6462131270682 L 108.36118336165887 328.48604991827244 L 112.65522801776856 327.1347215828703 L 116.85168074987578 325.53970137231926 L 120.9505415579805 323.695470809412 L 124.95181044208272 321.5994819493082 L 128.85548740218246 319.2519567539569 L 132.75916436228218 316.58495920969 L 136.56524939837942 313.6575850666131 L 140.46892635847914 310.29975404407986 L 144.37260331857885 306.56181716462305 L 148.2762802786786 302.42339341714757 L 152.27754916278082 297.7445508662918 L 156.27881804688303 292.60158588016577 L 160.37767885498778 286.8289995003489 L 164.37894773909 280.67928039667754 L 168.3802166231922 273.9990591784124 L 172.28389358329193 266.9495391874323 L 176.18757054339164 259.3538080991036 L 180.0912475034914 251.1914849023312 L 183.9949244635911 242.44218858601997 L 187.89860142369085 233.08553813907474 L 191.80227838379056 223.10115255040049 L 195.7059553438903 212.4686508089021 L 199.60963230399003 201.1676519034845 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-6c5922ee">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200.00000000000003 199.99999999999991 L 200.00000000000003 199.99999999999991 L 204.00126888410222 188.3554822840319 L 207.90494584420196 177.67355022156192 L 211.80862280430168 167.64126288774824 L 215.7122997644014 158.23823927149573 L 219.61597672450114 149.44409836170928 L 223.51965368460085 141.2384591472938 L 227.42333064470057 133.6009406171542 L 231.32700760480034 126.51116176019536 L 235.32827648890256 119.79126157940769 L 239.32954537300478 113.60346947319749 L 243.4284061811095 107.79354667332092 L 247.62485891321668 102.3752761569844 L 251.7237197213214 97.57660658285243 L 255.72498860542362 93.33993834749057 L 259.7262574895259 89.52349630784627 L 263.6299344496256 86.18413557661799 L 267.53361140972527 83.20348064066346 L 271.43728836982507 80.56115048888756 L 275.43855725392723 78.1825518414199 L 279.43982613802945 76.11604475077178 L 283.5386869461342 74.29979476847166 L 287.7351396782414 72.73109344921693 L 292.0291843343511 71.40425799389834 L 296.5184128384658 70.28892127981527 L 301.30041711458796 69.37212443382202 L 306.4727890867201 68.65306712970414 L 312.13312067886466 68.13611753827979 L 318.6717795870318 67.81099036106957 L 327.06468505124616 67.67370854098141 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-6c5922ee" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P4 -->
+              <div class="zoom-curve-svg-container hidden" data-power="4">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full -scale-x-100 opacity-60"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-5b88422f" />
+                    <g id="graphpaper-5b88422f">
+                      <g id="axis-5b88422f">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-5b88422f">
+                      <g id="sketch-5b88422f">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 91.08741281321757 332.2047876377483 L 99.57791020143448 331.8871151667955 L 106.11656910960153 331.3914144005514 L 111.67930877774364 330.7152980025115 L 116.6564969018708 329.84894340828833 L 121.14572540598547 328.8047924866773 L 125.34217813809269 327.55952405405696 L 129.2458550981924 326.12949946002885 L 132.95434821028715 324.4942297644067 L 136.56524939837942 322.6104549209634 L 140.07855866246916 320.4701218481673 L 143.49427600255643 318.06810144701365 L 146.8124014186412 315.4022602952889 L 150.13052683472597 312.3791933582723 L 153.4486522508107 308.96832938986563 L 156.7667776668955 305.13784180294726 L 160.18249500698278 300.72147064143417 L 163.59821234707005 295.7878888140166 L 166.9163377631548 290.4631389288736 L 170.13687125523705 284.75820173857926 L 173.25981282331685 278.68784488005207 L 176.38275439139665 272.0543253739137 L 179.50569595947644 264.82384464997705 L 182.5310456035537 257.2172289913251 L 185.556395247631 248.9852353610441 L 188.5817448917083 240.09449119914223 L 191.6070945357856 230.510756398995 L 194.6324441798629 220.19892330734493 L 197.65779382394015 209.12301672430152 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-5b88422f">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200.00000000000003 199.9999999999999 L 200.00000000000003 199.9999999999999 L 203.12294156807977 187.94350446853312 L 206.24588313615956 176.7302160559964 L 209.36882470423936 166.31987198479007 L 212.49176627231913 156.67319449939637 L 215.6147078403989 147.75189086637923 L 218.7376494084787 139.51865337438466 L 221.86059097655848 131.93715933414066 L 224.98353254463825 124.97207107845728 L 228.10647411271802 118.58903596222635 L 231.32700760480034 112.58084816349037 L 234.54754109688258 107.12068264339675 L 237.86566651296735 102.03192514893342 L 241.28138385305462 97.32468449063455 L 244.7946931171444 93.00523279056668 L 248.21041045723166 89.27580425736741 L 251.6261277973189 85.97402327868915 L 255.04184513740617 83.0658764706861 L 258.4575624774934 80.51876012202237 L 261.9708717415832 78.24267657992903 L 265.48418100567295 76.28316467738358 L 269.1926741177677 74.52421098725114 L 272.9987591538649 73.01406200021125 L 277.0000280379671 71.71080300159406 L 281.2940726940768 70.59382636355934 L 285.88089312219404 69.67473358400792 L 290.9556731703237 68.93037351717504 L 296.61600476246826 68.36771005465954 L 303.34984751864033 67.96990245859172 L 311.9379368308597 67.74003374322405 L 325.89358196321626 67.66609374771076 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-5b88422f" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- P5 -->
+              <div class="zoom-curve-svg-container hidden" data-power="5">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  class="pointer-events-none absolute h-full w-full -scale-x-100 opacity-60"
+                  viewBox="60 59 270 275"
+                  preserveAspectRatio="none"
+                >
+                  <defs />
+                  <g>
+                    <g id="background-images-cb7e9cab" />
+                    <g id="graphpaper-cb7e9cab">
+                      <g id="axis-cb7e9cab">
+                        <g>
+                          <g>
+                            <path
+                              fill="none"
+                              stroke="rgb(0,0,0)"
+                              class="dcg-svg-tickmark"
+                              paint-order="fill stroke markers"
+                              d=""
+                              stroke-opacity="1.0"
+                              stroke-miterlimit="2"
+                              stroke-width="1"
+                              stroke-dasharray=""
+                              vector-effect="non-scaling-stroke"
+                            />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g id="expressions-cb7e9cab">
+                      <g id="sketch-cb7e9cab">
+                        <title>Expression 7</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 67.6653510526192 332.3346489473808 L 67.6653510526192 332.3346489473808 L 100.7490132894644 332.2054158917681 L 109.92265414569876 331.8952949281058 L 116.6564969018708 331.4144246253864 L 122.21923657001291 330.7590917955605 L 127.00124084613508 329.9364068705844 L 131.29528550224478 328.9335982899791 L 135.1989624623445 327.7542258682118 L 138.80986365043674 326.3915527009372 L 142.225580990524 324.8211554504266 L 145.4461144826063 323.0521110931034 L 148.56905605068607 321.03284485901906 L 151.59440569476334 318.75566177060927 L 154.61975533884066 316.1253720149012 L 157.54751305891546 313.2064855504037 L 160.47527077899025 309.88147677009533 L 163.40302849906504 306.1093674288795 L 166.33078621913984 301.84651106000905 L 169.16095201521216 297.2156750318157 L 171.89352588728195 292.2266139300796 L 174.62609975935175 286.68600374465484 L 177.26108170741907 280.7792795102411 L 179.8960636554864 274.27634779726895 L 182.5310456035537 267.1331715961437 L 185.16602755162103 259.30359695378104 L 187.70341757568585 251.0701842046106 L 190.24080759975067 242.1103909774941 L 192.77819762381552 232.37718064500805 L 195.3155876478803 221.8215284743548 L 197.95056959594766 209.93463973930835 L 200 200"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                      <g id="sketch-cb7e9cab">
+                        <title>Expression 8</title>
+                        <path
+                          fill="#ffffff"
+                          stroke="none"
+                          paint-order="stroke fill markers"
+                          d=""
+                          fill-opacity="0.4"
+                        />
+                        <g>
+                          <path
+                            fill="none"
+                            stroke="#ffffff"
+                            class="dcg-svg-curve"
+                            paint-order="fill stroke markers"
+                            d=" M 200.00000000000003 199.99999999999986 L 200.00000000000003 199.99999999999986 L 202.63498194806732 187.33941153856165 L 205.26996389613464 175.66691467218917 L 207.90494584420196 164.92351033922287 L 210.53992779226925 155.05259622619818 L 213.17490974033657 145.999917065693 L 215.80989168840392 137.71351493417723 L 218.44487363647124 130.14367954986062 L 221.07985558453854 123.24289857054163 L 223.71483753260583 116.96580789145557 L 226.44741140467568 111.0687572140333 L 229.17998527674547 105.75000892373811 L 232.0101510728178 100.80444996218739 L 234.93790879289256 96.24308761172327 L 237.96325843696985 92.07196278917442 L 241.08620000504965 88.29221368474009 L 244.11154964912694 85.09213609918785 L 247.13689929320424 82.30215785767254 L 250.259840861284 79.80916489074357 L 253.38278242936377 77.6680622544259 L 256.6033159214461 75.78773899124621 L 259.92144133753084 74.15759228242479 L 263.43475060162064 72.7282426327451 L 267.1432437137154 71.50469866216645 L 271.14451259781754 70.4624821792782 L 275.53614917792976 69.59283178414887 L 280.4157453780544 68.89543084341256 L 286.076076970199 68.35601506981214 L 292.9075116503735 67.9760086274191 L 301.9835605826054 67.74933128404808 L 317.3054926509968 67.66785127550492 L 332.3346489473808 67.6653510526192"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-miterlimit="2"
+                            stroke-width="1"
+                            stroke-opacity="1.0"
+                            stroke-dasharray=""
+                            vector-effect="non-scaling-stroke"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                    <g id="labels-cb7e9cab" />
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Zoom end curve: Resize handle -->
+              <div
+                id="zoom-curve-end-resize"
+                class="h-full w-full max-w-2 cursor-ew-resize bg-gray-700 hover:bg-gray-600"
+              ></div>
+
+              <!-- Zoom end curve: Curve type -->
+              <div
+                id="zoom-curve-end-change-shape"
+                class="h-full grow cursor-pointer bg-gray-700 hover:bg-gray-600"
+              ></div>
+            </div>
+          </div>
+
+          <div
+            class="relative mt-2 flex h-4 w-full justify-between overflow-hidden text-sm"
+          >
+            <div
+              id="zoom-duration-start"
+              class="min-w-fit text-center"
+              style="width: 25%"
+            >
+              0.6 sec
+            </div>
+            <div
+              id="zoom-duration-end"
+              class="min-w-fit text-center"
+              style="width: 12.5%"
+            >
+              0.6 sec
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 flex flex-col" id="zoom-extend-duration">
+          <label
+            class="relative inline-flex cursor-pointer items-center justify-between"
+          >
+            <div class="flex items-center">
+              <div
+                class="flex w-full gap-2 select-none items-center rounded-md border-transparent bg-transparent text-left text-sm outline-none focus:border-transparent"
+              >
+                <div>Extend duration for animation</div>
+                <div
+                  class="group relative flex h-4 w-4 items-center justify-center rounded-full border border-shorts-200"
+                >
+                  ?
+                  <div
+                    class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute left-30 sm:-left-20 bottom-3 z-50 hidden w-72 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+                  >
+                    <b>ON:</b> Adds animation curve BEFORE and AFTER the phrase
+                    being highlighted, so we are fully zoomed in while the
+                    phrase is being spoken.<br /><br />
+                    <b>OFF:</b> Adds animation curve inside the phrase being
+                    highlighted (legacy behaviour).
+                  </div>
+                </div>
+                <span
+                  class="text-shorts-100 bg-shorts-400 ms-2 select-none whitespace-nowrap rounded-md px-1 py-[1px] text-xs"
+                  >✨ New</span
+                >
+              </div>
+            </div>
+            <input
+              type="checkbox"
+              id="checkbox-zoom-extend-duration"
+              value=""
+              class="peer sr-only accent-purple-700"
+            />
+            <div
+              class="peer relative h-4 w-7 rounded-full border-gray-600 bg-gray-700 after:absolute after:right-[14px] after:top-[2px] after:h-3 after:w-3 after:rounded-full after:border after:border-gray-400 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-0"
+            ></div>
+          </label>
+        </div>
+
+        <div>
+          <div class="mt-6 flex items-center">
+            <h4 class="text-md text-shorts-100 font-medium">Scope</h4>
+            <div
+              class="group relative ms-2 flex h-6 w-6 cursor-pointer select-none items-center justify-center rounded-full text-xs text-white opacity-50 transition-all duration-100 hover:opacity-100"
+            >
+              <div
+                class="flex h-4 w-4 items-center justify-center rounded-full border border-white"
+              >
+                <div>?</div>
+              </div>
+              <div
+                class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute -left-12 bottom-3 z-50 hidden w-48 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+              >
+                Which part of your sequence to operate on. If using "In/Out
+                points", you MUST set an "In point" and an "Out point" on your
+                sequence (hotkeys:
+                <span class="font-mono">I</span> and
+                <span class="font-mono">O</span>)
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center">
+              <input
+                type="radio"
+                class="accent-purple-700"
+                id="setting-zoom-scope-full"
+                name="setting-zoom-scope"
+                value="1"
+                checked
+              />
+              <label
+                for="setting-zoom-scope-full"
+                class="ms-1 select-none text-sm font-normal"
+                >Full sequence</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="radio"
+                class="accent-purple-700"
+                id="setting-zoom-scope-inout"
+                name="setting-zoom-scope"
+                value="2"
+              />
+              <label
+                for="setting-zoom-scope-inout"
+                class="ms-1 select-none text-sm font-normal"
+                >In/Out points</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="mb-1 mt-6 flex items-center">
+            <h4 class="text-md text-shorts-100 font-medium">
+              Target video track
+            </h4>
+            <div
+              class="group relative ms-2 flex h-6 w-6 cursor-pointer select-none items-center justify-center rounded-full text-xs text-white opacity-50 transition-all duration-100 hover:opacity-100"
+            >
+              <div
+                class="flex h-4 w-4 items-center justify-center rounded-full border border-white"
+              >
+                <div>?</div>
+              </div>
+              <div
+                class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute -right-20 bottom-3 z-50 hidden w-48 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+              >
+                Zoom clips will be added to this track. Any existing clips on
+                this track may be deleted in the process.
+              </div>
+            </div>
+          </div>
+          <select
+            id="setting-zoom-video-track"
+            name="setting-zoom-video-track"
+            class="bg-shorts-500 text-shorts-100 hover:bg-shorts-400 focus:border-shorts-600 focus:bg-shorts-400 w-full cursor-pointer rounded-sm text-sm leading-tight focus:outline-none"
+          ></select>
+        </div>
+
+        <div>
+          <div class="mb-1 mt-6 flex items-center">
+            <h4 class="text-md text-shorts-100 font-medium">Language</h4>
+            <div
+              class="group relative ms-2 flex h-6 w-6 cursor-pointer select-none items-center justify-center rounded-full text-xs text-white opacity-50 transition-all duration-100 hover:opacity-100"
+            >
+              <div
+                class="flex h-4 w-4 items-center justify-center rounded-full border border-white"
+              >
+                <div>?</div>
+              </div>
+              <div
+                class="border-shorts-300 bg-shorts-600 text-shorts-100 absolute -left-12 bottom-3 z-50 hidden w-48 rounded-md border p-1.5 text-xs shadow-lg shadow-black/30 group-hover:block"
+              >
+                This is the language of your audio. Please note non-English
+                support is currently experimental. For convenience, you can set
+                the default language in the Settings menu to avoid changing this
+                every time.
+              </div>
+            </div>
+            <span
+              class="text-shorts-100 bg-shorts-400 ms-2 select-none whitespace-nowrap rounded-md px-1 py-[1px] text-xs"
+              >🧪 Experimental</span
+            >
+          </div>
+          <select
+            id="setting-zoom-language"
+            name="setting-zoom-language"
+            class="language-dropdown feature-language bg-shorts-500 text-shorts-100 hover:bg-shorts-400 focus:border-shorts-600 focus:bg-shorts-400 cursor-pointer rounded-sm text-sm leading-tight focus:outline-none"
+          ></select>
+        </div>
+
+        <div class="mt-6 flex justify-center">
+          <button
+            class="w-full rounded-lg border-none bg-purple-700 px-6 py-2 font-bold text-white hover:bg-purple-600 active:bg-purple-800 disabled:opacity-50 disabled:hover:bg-purple-700"
+            id="button-zooms-go"
+          >
+            Go!
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZOOMS MENU END -->
 
     <script src="./index.js"></script>
   </body>
